@@ -9,12 +9,10 @@
 (defn part1 []
   (apply + numbers))
 
-; TODO
-(loop [nums [-6, +3, +8, +5, -6]
-       seen #{0}
-       s 0]
-  (if (empty? nums)
-    nil
+(defn first-duplicate [freqs]
+  (loop [nums (cycle freqs)
+         seen #{0}
+         s 0]
     (let [s' (+ s (first nums))]
       (if (contains? seen s')
         s'
@@ -22,5 +20,9 @@
           (rest nums)
           (conj seen s')
           s')))))
-          
+
+(defn part2 []
+  (first-duplicate numbers))
+
+(comment (part1) (part2))
 
